@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Container\Attributes\Auth;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    use HasFactory;
+
     protected $guarded = ['id'];
 
     public function author() {
