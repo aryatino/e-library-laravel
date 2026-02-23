@@ -22,11 +22,11 @@ class BookFactory extends Factory
 
         return [
             'name' => $name,
-            'slug' => fake()->slug($name),
-            'body' => fake()->paragraph(3, true),
+            'slug' => str()->slug($name),
+            'body' => fake()->paragraphs(3, true),
             'published_at' => fake()->boolean(70) ? fake()->dateTimeBetween('-5 years', 'now') : null,
-            'category_id' => Category:: inRandomOrder()->first()->id,
+            'category_id' => Category::inRandomOrder()->first()->id,
             'author_id' => Author::inRandomOrder()->first()->id,
-        ];
+        ]; 
     }
 }
