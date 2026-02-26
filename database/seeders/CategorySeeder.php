@@ -24,7 +24,7 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name' => 'Sejarah Islam',
-                'slug' => 'sejarah islam'
+                'slug' => 'sejarah-islam'
             ]
         ]);
     }
