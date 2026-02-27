@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HallController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,6 +13,14 @@ Route::get('/hall', function () {
 Route::get('/about', function () {
     return view('about', ['title' => 'About']);
 });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 Route::get('/hall', [HallController::class, 'index']);
 Route::get('/hall/book/{book:slug}', [HallController::class, 'singleBook']);
 
+Route::get('/login', [LoginController::class, 'login']);
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::get('/registration', [LoginController::class, 'registration']);
+Route::post('/registration', [LoginController::class, 'store']);
