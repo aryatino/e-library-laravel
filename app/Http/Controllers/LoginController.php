@@ -43,9 +43,35 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
            $request->session()->regenerate();
 
+           $user = Auth::user();
+           $role = $user->role;
+
+           switch ($role) {
+            case 'admin':
+                return redirect()->intended('/dashboard');
+
+            case 'user':
+                return redirect()->intended('/');
+            
+                default:
+                Auth::logout();
+                return redirect('login')->with('error', 'Peran Tidak Diketahui');
+           }
+
            return redirect()->intended('/dashboard');
         }
 
-        return back()->with('error', 'Login Gagal!!');
+        return back('/login')->with('error', 'Login Gagal!!');
      }
+
+     public function logout(Request $request)
+     {
+    Auth::logout();
+ 
+    $request->session()->invalidate();
+ 
+    $request->session()->regenerateToken();
+ 
+    return redirect('/');
+    }
 }

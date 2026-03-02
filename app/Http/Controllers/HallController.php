@@ -10,6 +10,8 @@ class HallController extends Controller
 {
     public function index() 
     {
+        $title = '';
+
         if (request('category')) {
             $category = Category::where('slug', request('category'))->first();
             $title = ' of ' . $category->name;
