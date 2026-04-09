@@ -6,12 +6,12 @@
       @session('success')
         <p class="bg-green-100 p-4 rounded text-green-800 border border-green-300 text-sm mb-8">{{ session('success') }}</p>
       @endsession
-      <a href="/dashboard/user/create" class="px-5 py-3 bg-sky-300 rounded-md text-gray-500 hover:bg-sky-400 transition">Tambah User</a>
+      <a href="/dashboard/book/create" class="px-5 py-3 bg-sky-300 rounded-md text-gray-500 hover:bg-sky-400 transition">Tambah Buku</a>
     </div>
   </div>
 
   <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-12 lg:col-span-11 p-4">
+    <div class="col-span-12 lg:col-span-12 p-4">
       <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -20,19 +20,16 @@
                         No.
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nama Pengguna
+                        Judul Buku
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Slug
+                        Kategori
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Username
+                        Penulis
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Email
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Peran
+                        Cover
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -40,35 +37,32 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($books as $book)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
                         {{ $loop->iteration }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ $user->name }}
+                        {{ $book->name }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $user->slug }}
+                        {{ $book->category->name }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $user->username }}
+                        {{ $book->author->name }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $user->email }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $user->role }}
+                        <img class="w-11" src="{{ Storage::url($book->cover) }}" alt="">
                     </td>
                     <td class="px-6 py-4 flex gap-2">
-                        <form action="/dashboard/user/{{ $user->slug }}" method="POST" class="text-red-500 hover:text-red-600">
+                        <form action="/dashboard/book/{{ $book->slug }}" method="POST" class="text-red-500 hover:text-red-600">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick="return confirm('Apakah anda yakin untuk menghapus?')"><i class="fa-sharp fa-solid fa-trash-can"></i> Delete</button>
                         </form>
                         <p>|</p>
                         <div class="text-yellow-500 hover:text-yellow-600">
-                            <a href="/dashboard/user/{{ $user->slug }}/edit"><i class="fa-sharp fa-solid fa-pen-to-square"></i> Edit</a>
+                            <a href="/dashboard/book/{{ $book->slug }}/edit"><i class="fa-sharp fa-solid fa-pen-to-square"></i> Edit</a>
                         </div>
                     </td>
                 </tr>
@@ -77,6 +71,11 @@
                
             </tbody>
         </table>
+
+         {{-- pagination --}}
+    <div class="mt-6">
+        {{ $books->links() }}
+    </div>
       </div>
     </div>
   </div>

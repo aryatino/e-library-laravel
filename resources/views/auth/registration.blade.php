@@ -18,11 +18,21 @@
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form class="space-y-6" action="/registration" method="POST">
           @csrf
-		<div>
-            <label for="name" class="block text-sm/6 font-medium text-gray-900">Name</label>
+		   <div>
+          <label for="name" class="block text-sm/6 font-medium text-gray-900">Name</label>
             <div class="mt-2">
               <input type="text" name="name" id="name" autocomplete="name" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 sm:text-sm/6 {{ $errors->has('name') ? 'outline-red-300 focus:outline-red-600' : 'outline-gray-300 focus:outline-indigo-600'}}" value="{{ old('name') }}">
               @error('name')
+                  <p class="mt-2 text-xs text-red-500">{{ $message }}</p>
+              @enderror
+            </div>
+          </div>
+
+           <div>
+            <label for="slug" class="block text-sm/6 font-medium text-gray-900">slug</label>
+            <div class="mt-2">
+              <input type="text" name="slug" id="slug" autocomplete="slug" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 {{ $errors->has('slug') ? 'outline-red-300 focus:outline-red-600' : 'outline-gray-300 focus:outline-indigo-600'}}" value="{{ old('slug') }}">
+              @error('slug')
                   <p class="mt-2 text-xs text-red-500">{{ $message }}</p>
               @enderror
             </div>
@@ -76,6 +86,25 @@
         </p>
       </div>
   </div>
+
+  
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const nameInput = document.getElementById('name');
+    const slugInput = document.getElementById('slug');
+
+    nameInput.addEventListener('input', function () {
+      const slug = nameInput.value
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, '') // Hapus karakter non-alfanumerik
+        .replace(/\s+/g, '-')         // Ganti spasi dengan tanda hubung
+        .replace(/-+/g, '-');         // Ganti beberapa tanda hubung dengan satu
+
+      slugInput.value = slug;
+    });
+  });
+</script>
   
 </body>
 </html>

@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Borrow extends Model
+{
+    protected $guarded = ['id'];
+
+    protected $with = ['book', 'user'];
+
+    protected $casts = [
+        'borrow_date' => 'datetime',
+        'due_date' => 'datetime',
+    ];
+
+    public function book() 
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+}

@@ -81,7 +81,7 @@ class AuthorController extends Controller
 
         return redirect('/dashboard/author')->with('success', 'Data berhasil diubah!!');
         
-        return dd($request->all()); 
+        //return dd($request->all()); 
     }
 
     /**

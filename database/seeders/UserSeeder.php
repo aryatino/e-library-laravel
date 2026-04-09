@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                 'slug' => "arya-tino",
                 'username' => "aryatinosatriani",
                 'email' =>  'aryatino345@gmail.com',
-                'password' => bcrypt('admin123'),
+                'password' => bcrypt('arya567'),
                 'role' => 'user'
             ],
         ]);
