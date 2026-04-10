@@ -31,6 +31,7 @@
                 </tr>
             </thead>
             <tbody>
+                @if ($categories->count())
                 @foreach ($categories as $category)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-400">
@@ -54,11 +55,19 @@
                         </div>
                     </td>
                 </tr>
-                    
                 @endforeach
-               
-            </tbody>
+                @else
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                    <td colspan="6" class="p-4 text-center text-white font-semibold">Tidak Ada Data Buku</td>
+                  </tr>
+                @endif
+           </tbody>
         </table>
+
+        {{-- pagination --}}
+        <div class="mt-6">
+            {{ $categories->links()}}
+        </div>
       </div>
     </div>
   </div>

@@ -14,7 +14,7 @@ class BorrowController extends Controller
         $borrowDate = Carbon::today();
         $dueDate = $borrowDate->copy()->addDays(7);
 
-        Borrow`::create([
+        Borrow::create([
             'user_id' => $request->user_id,
             'book_id' => $request->book_id,
             'borrow_date' => $borrowDate,
@@ -28,5 +28,45 @@ class BorrowController extends Controller
 
         return redirect('/');
         //return dd($request->all());
+    }
+
+    public function index() 
+    {
+        $title = 'Borrow - Index';
+        $borrows = Borrow::latest()->paginate(9);
+
+        return view('dashboard.borrow.index', compact('title', 'borrows'));                                                                                                                                                                                                                                                                                                                                 
+    }
+
+    public function edit(Borrow $borrow)
+    {
+        $title = 'Borrow - Edit';
+
+        return view('dashboard.borrow.edit', compact('title', 'borrow'));
+    }
+
+    public function update(Request $request, Borrow $borrow)
+    {
+        $borrow->status = $request->status;
+        $borrow->save();
+
+        $book = Book::find($borrow->book->id);
+
+        if ($request->status == 'diajukan' || $request->status == 'dipinjam') {
+            $book->status = 1;
+            $book->save();
+        } elseif ($request->status == 'dikembalikan' || $request->status == 'ditolak') {
+            $book->status = 0;
+            $book->save();
+        } 
+
+        return redirect('/dashboard/borrow')->with('success', 'Data peminjaman berhasil diupdate!!');
+    }
+
+    public function destroy(Borrow $borrow) 
+    {
+        Borrow::destroy($borrow->id);
+        
+        return redirect('/dashboard/borrow')->with('success', 'Data peminjaman berhasil dihapus!!');
     }
 }
