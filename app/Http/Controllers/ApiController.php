@@ -166,4 +166,38 @@ class ApiController extends Controller
             'message' => 'Login gagal!'
         ], 401);
     }
+
+    public function bookByStatus(string $status) 
+    {
+        $books = Book::where('status', $status)->get();
+
+        if ($books->count()) {
+            return response()->json([
+                'message' => "Data buku dengan status $status ditemukan",
+                'data' => $books 
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => "Data buku tidak ditemukan!"
+            ], 404);
+        }
+    }
+
+    public function search(string $search) 
+    {
+        $books = Book::where('name', 'like', '%' . $search . '%')
+        ->orWhere('body', 'like', '%' . $search . '%')
+        ->get();
+
+        if ($books->count()) {
+            return response()->json([
+                'message' => "Data buku ditemukan",
+                'data' => $books 
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => "Data buku tidak ditemukan!"
+            ], 404);
+        }
+    }
 }
