@@ -6,8 +6,8 @@
     <section class="pt-10 bg-gray-100 sm:pt-16 lg:pt-24">
         <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <div class="max-w-2xl mx-auto text-center">
-                <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight">Real humans are here to help you building your brand</h2>
-                <p class="mt-6 text-lg text-gray-900">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p>
+                <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight">Solusi Mudah Meminjam Buku Tanpa Ribet</h2>
+                <p class="mt-6 text-lg text-gray-900">IDN E-Library adalah solusi praktis bagi anda yang kutu buku untuk pinjam meminjam buku tanpa harus repot pergi ke perpustakaan.</p>
                 <a href="/hall" title="" class="inline-flex items-center justify-center px-6 py-4 mt-12 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:bg-blue-700" role="button">
                   <i class="fa-solid fa-book-open mr-2"></i> 
                       Read now
@@ -45,8 +45,8 @@
     <section class="py-10 sm:py-16 lg:py-24">
         <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <div class="max-w-2xl mx-auto text-center">
-                <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Latest from book</h2>
-                <p class="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis.</p>
+                <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Buku Terbaru Saat Ini</h2>
+                <p class="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">Disini ada bebrapa pilihan buku buku terbaru yang ada di IDN E-Library, silahkan pilih buku yang ingin anda pinjam.</p>
             </div>
     
             <div class="grid max-w-md grid-cols-1 mx-auto mt-12 lg:max-w-full lg:mt-16 lg:grid-cols-3 gap-x-16 gap-y-12">
